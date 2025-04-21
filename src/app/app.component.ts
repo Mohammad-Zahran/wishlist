@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common'; // ✅ Import this
 import { WishItem } from '../shared/models/wishItem';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true, // ✅ If you're using standalone components
+  imports: [RouterOutlet, CommonModule], // ✅ Add CommonModule here
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   items = [
