@@ -4,6 +4,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { WishItem } from '../shared/models/wishItem';
 
+const filters = [
+  (item: WishItem) => item,
+  (item: WishItem) => !item.isComplete,
+  (item: WishItem) => item.isComplete,
+];
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -18,21 +24,14 @@ export class AppComponent {
     new WishItem('Find grass that cuts itself'),
   ];
 
-  listFilter: String = '0';
+  listFilter: any = '0';
 
   newWishText = '';
 
   title = 'wishlist';
 
   get visibleItems(): WishItem[] {
-    let value = this.listFilter;
-    if (value === '0') {
-      return this.items;
-    } else if (this.listFilter === '1') {
-      return this.items.filter((item) => !item.isComplete);
-    } else {
-      return this.items.filter((item) => item.isComplete);
-    }
+    return this.items.filter(filters[this.listFilter]);
   }
 
   addNewWish() {
