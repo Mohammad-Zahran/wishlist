@@ -12,7 +12,7 @@ import { WishListComponent } from './wish-list/wish-list.component'; // ✅ Impo
     RouterOutlet,
     CommonModule,
     FormsModule,
-    WishListComponent, // ✅ Register it here
+    WishListComponent,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],

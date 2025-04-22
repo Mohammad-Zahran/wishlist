@@ -4,7 +4,7 @@ import { WishItem } from '../../shared/models/wishItem';
 
 @Component({
   selector: 'wish-list',
-  standalone: true, // ✅ Make it standalone
+  standalone: true, 
   imports: [CommonModule],
   templateUrl: './wish-list.component.html',
   styleUrls: ['./wish-list.component.css'],
