@@ -1,30 +1,28 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; // Import FormsModule for ngModel
+import { FormsModule } from '@angular/forms';
 import { WishItem } from '../shared/models/wishItem';
 
 @Component({
   selector: 'app-root',
-  standalone: true, // ✅ If you're using standalone components
-  imports: [RouterOutlet, CommonModule, FormsModule], // ✅ Add CommonModule here
+  standalone: true,
+  imports: [RouterOutlet, CommonModule, FormsModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  items: WishItem[] = [
-    new WishItem('To Learn Angular'),
-    new WishItem('Get Coffee', true),
-    new WishItem('Find grass that cuts itself'),
-  ];
+  items: WishItem[] = [];
 
   newWishText = '';
 
   title = 'wishlist';
 
   addNewWish() {
-    // todo: add wish to items array
-    // clear the textbox
+    if (this.newWishText.trim()) {
+      this.items.push(new WishItem(this.newWishText.trim()));
+      this.newWishText = '';
+    }
   }
 
   toggleItem(item: WishItem) {

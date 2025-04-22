@@ -4,6 +4,7 @@
       <label class="visually-hidden" for="specificSizeInputName">Wish</label>
       <input
         type="text"
+        name="new-wish-text"
         class="form-control"
         id="specificSizeInputName"
         placeholder="Enter your wish"
@@ -14,33 +15,35 @@
       <button
         type="submit"
         class="btn btn-primary"
-        (click)="$event.preventDefault(); (addNewWish)"
+        (click)="$event.preventDefault(); addNewWish()"
       >
         Add Wish
       </button>
     </div>
   </form>
 
-  <div *ngIf="items.length === 0; else showItems">
-    There are no wishes to display.
-  </div>
+  <div class="row mt-3">
+    <div *ngIf="items.length === 0; else showItems">
+      There are no wishes to display.
+    </div>
 
-  <ng-template #showItems>
-    <ul class="wish-list">
-      <li *ngFor="let item of items; index as ii">
-        <div class="form-check">
-          <label class="form-check-label">
-            <input
-              type="checkbox"
-              class="checkbox"
-              [checked]="item.isComplete"
-              [attr.data-index]="ii"
-              (click)="toggleItem(item)"
-            />
-            {{ item.wishText }}
-          </label>
-        </div>
-      </li>
-    </ul>
-  </ng-template>
+    <ng-template #showItems>
+      <ul class="wish-list">
+        <li *ngFor="let item of items; index as ii">
+          <div class="form-check">
+            <label class="form-check-label">
+              <input
+                type="checkbox"
+                class="checkbox"
+                [checked]="item.isComplete"
+                [attr.data-index]="ii"
+                (click)="toggleItem(item)"
+              />
+              {{ item.wishText }}
+            </label>
+          </div>
+        </li>
+      </ul>
+    </ng-template>
+  </div>
 </div>
