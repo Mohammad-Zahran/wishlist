@@ -7,10 +7,17 @@
         class="form-control"
         id="specificSizeInputName"
         placeholder="Enter your wish"
+        [(ngModel)]="newWishText"
       />
     </div>
     <div class="col-auto">
-      <button type="submit" class="btn btn-primary">Add Wish</button>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        (click)="$event.preventDefault(); (addNewWish)"
+      >
+        Add Wish
+      </button>
     </div>
   </form>
 
