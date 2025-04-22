@@ -24,22 +24,21 @@ export class AppComponent {
 
   title = 'wishlist';
 
-  visibleItems: WishItem[] = this.items;
+  get visibleItems(): WishItem[] {
+    let value = this.listFilter;
+    if (value === '0') {
+      return this.items;
+    } else if (this.listFilter === '1') {
+      return this.items.filter((item) => !item.isComplete);
+    } else {
+      return this.items.filter((item) => item.isComplete);
+    }
+  }
 
   addNewWish() {
     if (this.newWishText.trim()) {
       this.items.push(new WishItem(this.newWishText.trim()));
       this.newWishText = '';
-    }
-  }
-
-  filterChanged(value: any) {
-    if (value === '0') {
-      this.visibleItems = this.items;
-    } else if (value === '1') {
-      this.visibleItems = this.items.filter((item) => !item.isComplete);
-    } else {
-      this.visibleItems = this.items.filter((item) => item.isComplete);
     }
   }
 
